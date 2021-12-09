@@ -26,12 +26,19 @@ Route::get('posts/{post}', function ($slug) {
     $path = __DIR__ . "/../resources/posts/{$slug}.html";
 
     if(! file_exists($path)){
-        ddd('file does not exist');
+        // ddd('file does not exist');
+        // abort(404, 'Sorry Guys!');
+        return redirect('/');
     }
 
-    $post = file_get_contents($path);
+    $post = cache()->remember("posts.{slug}", now()->addDay(), function () use ($path) {
+        var_dump(file_get_contents($path));
+        return file_get_contents($path);
+    }); 
+
     return view('post', [
         'post' => $post 
     ]);
+// })->where('post', '[A-z-]+');
 });
 
