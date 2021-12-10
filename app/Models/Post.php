@@ -9,6 +9,12 @@ class Post extends Model
 {
     use HasFactory;
 
+    // Guarding
+    // protected $guarded = [];
+
+    // Optional eager loading.
+    // protected $with = ['category', 'author'];
+
     public function category(){
         return $this->belongsTo(Category::class);
     }
