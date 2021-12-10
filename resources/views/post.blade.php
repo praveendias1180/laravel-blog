@@ -3,11 +3,13 @@
         {{ $post->title }}
     </x-slot>
     <x-slot name="content">
-    <article>
-        <h1><a href="/">{{ $post->title }}</a></h1>
-        {!! $post->body !!}
-    </article>
-    <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
-    <a href="/">Go back</a>
+        <article>
+            <h1><a href="/">{{ $post->title }}</a></h1>
+            {!! $post->body !!}
+            <p>
+                <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a><br />
+                <a href="/">Go back</a>
+            </p>
+        </article>
     </x-slot>
 </x-layout>
