@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $user->id,
             'slug' => 'personal-post',
             'excerpt' => 'The excerpt of the personal post',
-            'body' => 'The body of the personal post.'
+            'body' => '<p>The body of the personal post. More details to be added later.</p>'
         ]);
 
         Post::create([
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $user->id,
             'slug' => 'family-post',
             'excerpt' => 'The excerpt of the family post',
-            'body' => 'The body of the family post.'
+            'body' => '<p>The body of the family post. More details to be added later.</p>'
         ]);
 
         Post::create([
@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $user->id,
             'slug' => 'other-post',
             'excerpt' => 'The excerpt of the other post',
-            'body' => 'The body of the other post.'
+            'body' => '<p>The body of the other post. More details to be added later.</p>'
         ]);
     }
 }
