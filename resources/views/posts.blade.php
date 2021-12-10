@@ -9,8 +9,10 @@
 </head>
 <body>
     <?php foreach($posts as $post) : ?>
+    <?php //ddd($post) ?>
     <article>
-        <?php echo $post; ?>
+        <h1><a href="/posts/<?php echo $post->slug; ?>"><?php echo $post->title; ?></a></h1>
+        <p><?php echo $post->excerpt; ?></p>
     </article>
     <?php endforeach; ?>
 
