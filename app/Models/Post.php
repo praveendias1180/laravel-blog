@@ -24,9 +24,21 @@ class Post {
     }
 
     public static function find($slug){
-        $posts = Post::all();
+        $posts = static::all();
 
         $post = $posts->firstWhere('slug', $slug);
+
+        return $post;
+    }
+
+    public static function findOrFail($slug){
+
+        $post = static::find($slug);
+
+        if(!$post){
+            throw new ModelNotFoundException();
+        }
+
         return $post;
     }
     

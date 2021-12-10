@@ -1,9 +1,12 @@
-@extends ('layout')
-
-@section ('content')
+<x-layout>
+    <x-slot name="title">
+        {{ $post->title }}
+    </x-slot>
+    <x-slot name="content">
     <article>
-        <h1><a href="post">{{ $post->title }}</a></h1>
+        <h1><a href="/">{{ $post->title }}</a></h1>
         {!! $post->body !!}
     </article>
     <a href="/">Go back</a>
-@endsection
+    </x-slot>
+</x-layout>
