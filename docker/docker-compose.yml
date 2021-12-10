@@ -1,0 +1,25 @@
+# Use root/changethis as user/password credentials
+version: '3.9'
+
+services:
+
+  db:
+    image: mysql:8.0
+    container_name: laravel_mysql_container
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./mysql-data:/var/lib/mysql # wordpress database is nearby.
+    ports:
+      - 3306:3306 # bind this to docker host to attach an external client.
+    environment:
+      MYSQL_ROOT_PASSWORD: changethis 
+
+  adminer:
+    depends_on:
+      - db
+    image: adminer:4.8.1-standalone
+    container_name: laravel_adminer_container
+    restart: always
+    ports:
+      - 8080:8080 # create a database for WordPress before runing installation.
