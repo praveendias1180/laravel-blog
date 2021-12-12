@@ -2,7 +2,7 @@
     <x-slot name="title">
         All Posts
     </x-slot>
-    <x-slot name="content">
+    <x-slot name="lara">
         @foreach($posts as $post)
         <article>
             <h1><a href="/posts/<?= $post->slug; ?>">{{ $post->title}}</a></h1>
@@ -12,28 +12,19 @@
         </article>
         @endforeach 
     </x-slot>
-    <x-slot name="lara">
+    <x-slot name="content">
 
         @include('_posts-header')
 
         <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
 
-            <x-post-featured-card />
+            @if ($posts->count())
 
-            <div class="lg:grid lg:grid-cols-2">
+            <x-posts-grid :posts="$posts" />
+            @else
+                <p>No posts yet. Please check back later.</p>
+            @endif
 
-                <x-post-card />
-                <x-post-card />
-
-            </div>
-
-            <div class="lg:grid lg:grid-cols-3">
-
-                <x-post-card />
-                <x-post-card />
-                <x-post-card />
-
-            </div>
         </main>
     </x-slot>
 </x-layout>
