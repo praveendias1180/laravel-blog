@@ -18,13 +18,13 @@ class SessionController extends Controller
             'password' => 'required|max:255'
         ]);
 
-        if(auth()->attempt($attributes)){
-            return redirect('/')->with('success', 'Welcome Back!');
+        if(! auth()->attempt($attributes)){
+            throw ValidationException::withMessages([
+                'email' => 'Your provided credentials could not be verified.'
+            ]);
         }
 
-        throw ValidationException::withMessages([
-            'email' => 'Your provided credentials could not be verified.'
-        ]);
+        return redirect('/')->with('success', 'Welcome Back!');
 
         // return back()
         //     ->withInput()
