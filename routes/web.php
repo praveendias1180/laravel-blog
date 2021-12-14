@@ -24,7 +24,7 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
  * Keep this for redirection.
  */
 Route::get('categories/{category:slug}', function (Category $category) {
-    return view('posts', [
+    return view('posts.index', [
         'posts' => $category->posts->load(['category', 'author']),
         'currentCategory' => $category,
         'categories' => Category::all()
