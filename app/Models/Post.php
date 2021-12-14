@@ -37,10 +37,29 @@ class Post extends Model
             $query->whereHas('author',  fn ($query) => $query->where('username', $author)));
     }
 
+    /**
+     * Post hasMay comments
+     *
+     * @return void
+     */
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * Post belongsTo category
+     *
+     * @return void
+     */
     public function category(){
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * Post belongsTo author
+     *
+     * @return void
+     */
     public function author(){
         return $this->belongsTo(User::class, 'user_id');
     }
