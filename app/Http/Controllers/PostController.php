@@ -11,7 +11,7 @@ class PostController extends Controller
     public function index(){
 
         return view('posts', [
-            'posts' => $this->getPosts(),
+            'posts' => Post::latest()->with('category', 'author')->filter(request(['search']))->get(),
             'categories' => Category::all()
         ]);
     }
@@ -20,10 +20,5 @@ class PostController extends Controller
         return view('post', [
             'post' => $post 
         ]);
-    }
-
-    protected function getPosts(){
-        $posts = Post::latest()->with('category', 'author')->filter();
-        return $posts->get();
     }
 }

@@ -15,12 +15,11 @@ class Post extends Model
     // Optional eager loading.
     // protected $with = ['category', 'author'];
     
-    public function scopeFilter($query){
-        if(request('search')){
+    public function scopeFilter($query, array $filters){
+        $query->when($filters['search'] ?? false, fn ($query, $search) =>
             $query
-                ->where('title', 'like', '%' . request('search') . '%')
-                ->orWhere('body', 'like', '%' . request('search') . '%');
-        }    
+                ->where('title', 'like', '%' . $search . '%')
+                ->orWhere('body', 'like', '%' . $search . '%'));
     }
 
     public function category(){
