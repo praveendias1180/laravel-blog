@@ -23,3 +23,12 @@ To
 ```
 
 ![n+1](public/n-plus-one.png)
+
+## Laravel CSRF Protection
+
+```
+@csrf
+```
+Be sure to include the **Cross Site Request Forgery** Protection tags.
+
+![419](public/419.png)
