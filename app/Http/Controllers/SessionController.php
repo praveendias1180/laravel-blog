@@ -24,6 +24,12 @@ class SessionController extends Controller
             ]);
         }
 
+        /**
+         * To prevent session fixation attacks.
+         * https://en.wikipedia.org/wiki/Session_fixation
+         */
+        session()->regenerate();
+
         return redirect('/')->with('success', 'Welcome Back!');
 
         // return back()
