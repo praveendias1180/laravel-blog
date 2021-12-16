@@ -7,7 +7,7 @@ class Newsletter {
 
     protected $client;
 
-    public function __construct(ApiClient $client){
+    public function __construct(ApiClient $client, string $foo){
        $this->client = $client; 
     }
 
