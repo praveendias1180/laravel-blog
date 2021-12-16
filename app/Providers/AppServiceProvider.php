@@ -23,15 +23,15 @@ class AppServiceProvider extends ServiceProvider
         });
 
         /**
-         * Adding to ToyChest
+         * Adding the newsletter to the 'ToyChest'.
          *
          * @return void
          */
         app()->bind(Newsletter::class, function(){
-            return new Newsletter(
-                new ApiClient(),
-                'foobar'
-            );
+            return new Newsletter((new ApiClient())->setConfig([
+                'apiKey' => config('services.mailchimp.key'),
+                'server' => 'us20'
+            ]), 'foobar');
         });
     }
 
