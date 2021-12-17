@@ -5,8 +5,7 @@
 
     <textarea name="{{ $name }}" 
         rows="5"
-        class="w-full focus:outline-none focus:ring" 
-        placeholder=""
+        class="w-full focus:outline-none focus:ring border border-gray-200 rounded" 
         required >{{ old($name) }}</textarea>
     
     <x-form.error name="{{ $name }}"/>
