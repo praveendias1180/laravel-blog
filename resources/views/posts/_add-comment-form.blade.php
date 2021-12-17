@@ -6,19 +6,11 @@
         <img src="https://i.pravatar.cc/60?u={{ auth()->user()->id }}" alt="" width="40" height="40" class="rounded-full mr-3"/>
         <h2>Want to participate?</h2>
     </header>
-    <div class="mt-6">
-        <textarea name="body" 
-            rows="5"
-            class="w-full focus:outline-none focus:ring" 
-            placeholder="Say something!"
-            required ></textarea>
-        
-        @error('body')
-            <span class="text-red-500 text-xs">{{ $message }}</span>
-        @enderror
-    </div>
+
+    <x-form.textarea name="body" />
+
     <div class="flex justify-end mt-6 pt-6 border-t border-gray-200">
-        <x-submit-button>Post</x-submit-button>
+        <x-form.button>Post</x-form.button>
     </div>
 </form>
 </x-panel>

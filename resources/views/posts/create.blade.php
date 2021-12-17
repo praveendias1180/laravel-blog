@@ -5,106 +5,33 @@
             <x-panel>
             <form method="POST" action="/admin/posts" enctype="multipart/form-data">
                 @csrf
-                <lable class="block mb-2 uppercase font-bold text-xs text-gray-700" 
-                    for="title" >
-                    Title
-                </lable>
-                <input class="border border-gray-400 p-2 w-full"
-                    type="text"
-                    name="title"
-                    id="title"
-                    value="{{ old("title") }}"
-                    required />
 
-                @error('title')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
+                <x-form.input name="title"/>
+                <x-form.input name="slug"/>
+                <x-form.input name="thumbnail" type="file"/>
 
-                <lable class="block mb-2 uppercase font-bold text-xs text-gray-700" 
-                    for="slug" >
-                    Slug
-                </lable>
-                <input class="border border-gray-400 p-2 w-full"
-                    type="text"
-                    name="slug"
-                    id="slug"
-                    value="{{ old("title") }}"
-                    required />
-
-                @error('slug')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
+                <x-form.textarea name="excerpt"/>
+                <x-form.textarea name="body"/>
 
 
-                <lable class="block mb-2 uppercase font-bold text-xs text-gray-700" 
-                    for="thumbnail" >
-                    Thumbnail
-                </lable>
-                <input class="border border-gray-400 p-2 w-full"
-                    type="file"
-                    name="thumbnail"
-                    id="thumbnail"
-                    value="{{ old("title") }}"
-                    required />
+                <x-form.field >
+                    <x-form.label name="Category"/>
 
-                @error('thumbnail')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
+                        <select name="category_id">
+                            @php
+                                $categories = \App\Models\Category::all();
+                            @endphp
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}"
+                                    {{ old('category_id') == $category->id ? 'selected' : ''}}
+                                >{{ ucwords($category->name) }}</option>
+                            @endforeach
+                        </select>
 
-                <lable class="block mt-3 mb-2 uppercase font-bold text-xs text-gray-700" 
-                    for="excerpt" >
-                    Excerpt
-                </lable>
-                <textarea name="excerpt" 
-                    rows="5"
-                    class="w-full focus:outline-none focus:ring" 
-                    placeholder="The Excerpt"
-                    required >{{ old("excerpt") }}</textarea>
-                
-                @error('excerpt')
-                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                @enderror
+                    <x-form.error name="category_id"/>
+                </x-form.field>
 
-                <lable class="block mt-3 mb-2 uppercase font-bold text-xs text-gray-700" 
-                    for="body" >
-                    Body
-                </lable>
-                <textarea name="body" 
-                    rows="5"
-                    class="w-full focus:outline-none focus:ring" 
-                    placeholder="The Excerpt"
-                    required >{{ old("body") }}</textarea>
-                
-                @error('body')
-                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                @enderror
-
-                <lable class="block mt-3 mb-2 uppercase font-bold text-xs text-gray-700" 
-                    for="category_id" >
-                    Category
-                </lable>
-
-
-                <select name="category_id">
-                    @php
-                        $categories = \App\Models\Category::all();
-                    @endphp
-
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->id }}"
-                            {{ old('category_id') == $category->id ? 'selected' : ''}}
-                        >{{ ucwords($category->name) }}</option>
-                    @endforeach
-                </select>
-
-                
-                @error('category')
-                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                @enderror
-
-                <div class="flex justify-end mt-6 pt-6 border-t border-gray-200">
-                    <x-submit-button>Publish</x-submit-button>
-                </div>
+                <x-form.button>Publish</x-form.button>
             </form>
             </x-panel>
         </section>
