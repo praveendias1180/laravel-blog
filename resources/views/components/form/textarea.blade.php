@@ -6,7 +6,7 @@
     <textarea name="{{ $name }}" 
         rows="5"
         class="w-full focus:outline-none focus:ring border border-gray-200 rounded" 
-        required >{{ old($name) }}</textarea>
+        required >{{ $slot }}</textarea>
     
     <x-form.error name="{{ $name }}"/>
 </x-form.field>
